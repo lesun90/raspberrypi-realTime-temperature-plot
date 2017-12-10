@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="plotly.min.js"></script>
+  <div id="graph"></div>
+  <script type="text/javascript">
+  //set up plot
+  var data = 0;
+  var time = new Date();
+  var update = [{
+    x: [time],
+    y: [data],
+    name: 'Name of Trace 1',
+    mode: 'lines',
+    line: {color: '#80CAF6'}
+  }]
+
+  var layout = {
+    title: 'Plot Title',
+    xaxis: {
+      title: 'x Axis',
+      titlefont: {
+        family: 'Courier New, monospace',
+        size: 18,
+        color: '#7f7f7f'
+      }
+    },
+    yaxis: {
+      title: 'y Axis',
+      titlefont: {
+        family: 'Courier New, monospace',
+        size: 18,
+        color: '#7f7f7f'
+      }
+    }
+  };
+
+  Plotly.plot('graph', update,layout);
+
+    layoutRecordPlot = {
+      title: 'Recorded Plot',
+      xaxis: {
+        type: 'number',
+        title: 'Sample Number',
+        titlefont: {
+          family: 'Courier New, monospace',
+          size: 18,
+          color: '#7f7f7f'
+        }
+      },
+      yaxis: {
+        title: 'Temperature',
+        range: [0,1023],
+        titlefont: {
+          family: 'Courier New, monospace',
+          size: 18,
+          color: '#7f7f7f'
+        }
+      }
+    };
+
+  var socket = io(); //load socket.io-client and connect to the host that serves the page
+  window.addEventListener("load", function(){ //when page loads
+  });
+
+  socket.on('btnStatus', function (msg) { //get button status from client
+    if (msg == "1")
+    {
+      document.getElementById("recordStatus").innerHTML = "Record Status: On".bold()
+    }
+    else
+    {
+      document.getElementById("recordStatus").innerHTML = "Record Status: Off".bold()
+    }
+    
+  });
+
+  var data = 0;
+  var sampleNumber = 0;
+  socket.on('senddata', function (msg) { //get button status from client
+    document.getElementById("currentValue").innerHTML = "Current Value: ".bold()+msg.data;
+    data = msg.data
+    sampleNumber = msg.sampleNumber
+  });
+
+  socket.on('sendRecordData', function (msg) { 
+    rdata = msg
+    var recordData = {
+    y: rdata, 
+    type: 'lines'
+    };
+    var data = [recordData];
+    Plotly.newPlot('recordPlot', data,layoutRecordPlot);
+    
+  });
+
+  function updateplot()
+  {
+    update = {
+      x:  [[sampleNumber]],
+      y: [[data]]
+    }
+
+    var beginInterval = sampleNumber-50;
+    var endInterval = sampleNumber+50;
+
+    var intervalView = {
+      xaxis: {
+        type: 'number',
+        range: [beginInterval,endInterval]
+      }
+    };
+
+    layout = {
+      title: 'Temperature Plot',
+      xaxis: {
+        type: 'number',
+        range: [beginInterval,endInterval],
+        title: 'Sample Number',
+        titlefont: {
+          family: 'Courier New, monospace',
+          size: 18,
+          color: '#7f7f7f'
+        }
+      },
+      yaxis: {
+        title: 'Temperature',
+        range: [0,1023],
+        titlefont: {
+          family: 'Courier New, monospace',
+          size: 18,
+          color: '#7f7f7f'
+        }
+      }
+    };
+
+    Plotly.relayout('graph', layout);
+    Plotly.extendTraces('graph', update, [0])
+  }
+  var interval = setInterval(updateplot, 1);
+</script>
+</head>
+<body>
+  <p id="currentValue"></p>
+  <p id="recordStatus"></p>
+  <div id="recordPlot"></div>
+<script>
+    var recordData = {
+    y: [], 
+    type: 'lines'
+    };
+    var data = [recordData];
+    Plotly.newPlot('recordPlot', data,layoutRecordPlot);
+</script>
+</body>
+</html>
