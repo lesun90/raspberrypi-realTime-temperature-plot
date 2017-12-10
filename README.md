@@ -9,8 +9,8 @@ A switch button connected to Raspberry Pi to capture data in a period of time.
 ## Getting Started
 
 ### Hardware Setup
-
-
+sdads
+ddd
 ### Prerequisites
 ```
 //install nodejs
