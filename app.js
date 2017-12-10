@@ -5,8 +5,6 @@ var io = require('socket.io')(server);
 var SerialPort = require('serialport');
 var Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
 var pushButton = new Gpio(17, 'in', 'both'); //use GPIO pin 17 as input, and 'both' button presses, and releases should be handled
-var LED = new Gpio(4, 'out'); //use GPIO pin 4 as output
-
 
 //setup Hardware
 const parsers = SerialPort.parsers;
@@ -41,7 +39,6 @@ io.sockets.on('connection', function (socket) {// WebSocket Connection
       return;
     }
     btnStatus = value
-    LED.writeSync(btnStatus);
     socket.emit('btnStatus', btnStatus); //send button status to client
   });
   //serial event
@@ -64,7 +61,6 @@ io.sockets.on('connection', function (socket) {// WebSocket Connection
       return;
     }
     btnStatus = value
-    LED.writeSync(btnStatus);
     socket.emit('btnStatus', btnStatus); //send button status to client
     if (value == 0)
     {
