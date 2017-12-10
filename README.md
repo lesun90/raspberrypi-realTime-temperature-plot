@@ -29,8 +29,10 @@ npm install onoff
 ```
 
 ### Running
+On the server sie (Raspberry Pi)
 
 ```
+cd /path_to_project_folder
 node app.js
 ```
 
@@ -42,10 +44,11 @@ code to get the Raspberry IP address
 nmap -sn 192.168.1.0/24
 ```
 
-Open web browser, type in that address with the port number (port number defined in app.js)
+Open web browser, type in that address with the port number (port number defined in app.js), eg:
 ```
 192.168.1.9:5000
 ```
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
