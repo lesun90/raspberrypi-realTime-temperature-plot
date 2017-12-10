@@ -1,7 +1,8 @@
 # Raspberry Pi Real-time Temperature Plot
 
-Project to track and plot temperature using Arduino + Raspberry Pi + temperature sensor.
-It makes a webserver on Raspberry Pi to collect data from Arduino (update per ms) and display on Html page
+The purpose of this project is to track and plot temperature using Arduino + Raspberry Pi + temperature sensor.
+It create a webserver on Raspberry Pi to collect data from Arduino (update per ms) and display on Html page.
+A switch button connected to Raspberry Pi to capture data in a period of time.
 
 ## Getting Started
 
@@ -32,7 +33,7 @@ npm install onoff
 node app.js
 ```
 
-On the server side (must connect to the same network of Raspberry), run the following
+On the client side (must connect to the same network of Raspberry), run the following
 code to get the Raspberry IP address
 
 ```
@@ -40,7 +41,7 @@ code to get the Raspberry IP address
 nmap -sn 192.168.1.0/24
 ```
 
-Open web browser, type in that address with the port number
+Open web browser, type in that address with the port number (port number defined in app.js)
 ```
 192.168.1.9:5000
 ```
