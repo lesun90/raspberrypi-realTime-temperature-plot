@@ -12,7 +12,6 @@ A switch button connected to Raspberry Pi to capture data in a period of time.
 
 
 ### Prerequisites
-
 ```
 //install nodejs
 sudo apt-get update
