@@ -43,7 +43,7 @@ io.sockets.on('connection', function (socket) {// WebSocket Connection
   });
   //serial event
   parser.on('data', function(data){
-    console.log(data)
+    // console.log(data)
     serialdata = data
     sampleNumber++
     socket.emit('senddata', {'data': serialdata, 'sampleNumber': sampleNumber});
