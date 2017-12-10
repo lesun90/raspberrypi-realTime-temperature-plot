@@ -5,6 +5,7 @@ var io = require('socket.io')(server);
 var SerialPort = require('serialport');
 var Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
 var pushButton = new Gpio(17, 'in', 'both'); //use GPIO pin 17 as input, and 'both' button presses, and releases should be handled
+var LED = new Gpio(4, 'out'); //use GPIO pin 4 as output
 
 
 //setup Hardware
@@ -34,12 +35,13 @@ recordData = []
 btnStatus = 0;
 io.sockets.on('connection', function (socket) {// WebSocket Connection
   //read button status
-  pushButton.read(function (err, value) { 
+  pushButton.read(function (err, value) {
     if (err) { //if an error
       console.error('There was an error', err); //output error message to console
       return;
     }
     btnStatus = value
+    LED.writeSync(btnStatus);
     socket.emit('btnStatus', btnStatus); //send button status to client
   });
   //serial event
@@ -56,12 +58,13 @@ io.sockets.on('connection', function (socket) {// WebSocket Connection
 
   //Watch for button change status
 
-  pushButton.watch(function (err, value) { 
+  pushButton.watch(function (err, value) {
     if (err) { //if an error
       console.error('There was an error', err); //output error message to console
       return;
     }
     btnStatus = value
+    LED.writeSync(btnStatus);
     socket.emit('btnStatus', btnStatus); //send button status to client
     if (value == 0)
     {
