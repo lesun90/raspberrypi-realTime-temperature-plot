@@ -73,7 +73,7 @@
     {
       document.getElementById("recordStatus").innerHTML = "Record Status: Off".bold()
     }
-    
+
   });
 
   var data = 0;
@@ -84,15 +84,15 @@
     sampleNumber = msg.sampleNumber
   });
 
-  socket.on('sendRecordData', function (msg) { 
+  socket.on('sendRecordData', function (msg) {
     rdata = msg
     var recordData = {
-    y: rdata, 
+    y: rdata,
     type: 'lines'
     };
     var data = [recordData];
     Plotly.newPlot('recordPlot', data,layoutRecordPlot);
-    
+
   });
 
   function updateplot()
@@ -102,8 +102,8 @@
       y: [[data]]
     }
 
-    var beginInterval = sampleNumber-50;
-    var endInterval = sampleNumber+50;
+    var beginInterval = sampleNumber-70;
+    var endInterval = sampleNumber+30;
 
     var intervalView = {
       xaxis: {
@@ -147,7 +147,7 @@
   <div id="recordPlot"></div>
 <script>
     var recordData = {
-    y: [], 
+    y: [],
     type: 'lines'
     };
     var data = [recordData];
