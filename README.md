@@ -13,7 +13,9 @@ A switch button connected to Raspberry Pi to capture data in a period of time.
 
 - Arduino connected to Raspberry PI via cable.
 
-- Push button connected to Raspberry PI (pull down), an led is connected to indicate status of push button.
+- Push button connected to Raspberry PI (pull down).
+
+- A led is connected to indicate status of push button (optional).
 
 ![schematic](/pics/schematic.jpg?raw=true "schematic")
 ### Prerequisites
