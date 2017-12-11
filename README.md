@@ -15,7 +15,7 @@ A switch button connected to Raspberry Pi to capture data in a period of time.
 
 - Push button connected to Raspberry PI (pull down), an led is connected to indicate status of push push.
 
-![schematic](/pics/schematic.png?raw=true "schematic")
+![schematic](/pics/schematic.jpg?raw=true "schematic")
 ### Prerequisites
 ```
 //install nodejs
