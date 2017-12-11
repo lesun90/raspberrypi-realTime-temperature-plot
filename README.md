@@ -9,8 +9,13 @@ A switch button connected to Raspberry Pi to capture data in a period of time.
 ## Getting Started
 ![webinterface](/pics/webinterface.png?raw=true "webinterface")
 ### Hardware Setup
-sdads
-ddd
+- A temperature sensor is connected to arduindo.
+
+- Arduino connected to Raspberry PI via cable.
+
+- Push button connected to Raspberry PI (pull down), an led is connected to indicate status of push push.
+
+![schematic](/pics/schematic.png?raw=true "schematic")
 ### Prerequisites
 ```
 //install nodejs
