@@ -7,7 +7,7 @@ It create a webserver on Raspberry Pi to collect data from Arduino (update per m
 A switch button connected to Raspberry Pi to capture data in a period of time.
 
 ## Getting Started
-
+![webinterface](/pics/webinterface.png?raw=true "webinterface")
 ### Hardware Setup
 sdads
 ddd
