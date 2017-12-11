@@ -2,7 +2,7 @@
 
 The purpose of this project is to track and plot temperature in realtime using Arduino + Raspberry Pi + temperature sensor.
 
-It create a webserver on Raspberry Pi to collect data from Arduino (update per ms) and display on Html page.
+It creates a webserver on Raspberry Pi to collect data from Arduino (update per ms) and display on Html page.
 
 A switch button connected to Raspberry Pi to capture data in a period of time.
 
